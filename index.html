@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Server Online</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", Arial, sans-serif;
+      background: #0b0f14;
+      color: #e6edf3;
+    }
+    .card {
+      width: min(860px, calc(100% - 32px));
+      padding: 28px 26px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: 0.2px;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.12);
+    }
+    .subtitle {
+      margin: 14px 0 0;
+      line-height: 1.55;
+      color: rgba(230,237,243,0.78);
+      font-size: 15px;
+    }
+    .meta {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .pill {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      font-size: 13px;
+      color: rgba(230,237,243,0.85);
+    }
+    .k { color: rgba(230,237,243,0.55); min-width: 110px; }
+    .v { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+    footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: rgba(230,237,243,0.45);
+    }
+    a { color: #7dd3fc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="row">
+      <h1 class="title"><span class="dot" aria-hidden="true"></span>Server is up and running</h1>
+      <div style="font-size:12px;color:rgba(230,237,243,.55)">Status: OK</div>
+    </div>
+
+    <p class="subtitle">
+      It works. Você está acessando o servidor diretamente pelo IP e o serviço está respondendo normalmente.
+    </p>
+
+    <section class="meta" aria-label="Server details">
+      <div class="pill"><span class="k">Timestamp</span><span class="v" id="ts">—</span></div>
+      <div class="pill"><span class="k">Hostname</span><span class="v" id="host">—</span></div>
+      <div class="pill"><span class="k">User Agent</span><span class="v" id="ua">—</span></div>
+    </section>
+
+  </main>
+
+  <script>
+    const pad = (n) => String(n).padStart(2, "0");
+    const d = new Date();
+    const ts = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+    document.getElementById("ts").textContent = ts;
+
+    document.getElementById("host").textContent = location.hostname || "unknown";
+    document.getElementById("ua").textContent = navigator.userAgent || "unknown";
+  </script>
+</body>
+</html>
